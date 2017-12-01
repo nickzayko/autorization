@@ -28,5 +28,10 @@ public class Registration extends HttpServlet {
                 req.getServletContext().getRequestDispatcher("/badRegistration.jsp").forward(req, resp);
             }
         }
+        req.getServletContext().setAttribute("login", userLogin);
+        req.getServletContext().setAttribute("password", userPassword);
+        req.getServletContext().setAttribute("name", userName);
+        req.getServletContext().setAttribute("age", userAge);
+        req.getServletContext().getRequestDispatcher("/goodRegistration.jsp").forward(req,resp);
     }
 }
