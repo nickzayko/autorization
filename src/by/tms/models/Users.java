@@ -23,7 +23,8 @@ public class Users {
         this.age = age;
     }
 
-    public Users(){}
+    public Users() {
+    }
 
     public int getId() {
         return id;
@@ -65,13 +66,13 @@ public class Users {
         this.age = age;
     }
 
-    public static ArrayList<Users> getUsers(){
+    public static ArrayList<Users> getUsers() {
         try {
             String sql = " SELECT * FROM datausers ";
             ArrayList<Users> users = new ArrayList<>();
             Statement statement = UsersConnector.getConnection().createStatement();
             ResultSet resultSet = statement.executeQuery(sql);
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 Users user = new Users();
                 user.setId(resultSet.getInt("id"));
                 user.setName(resultSet.getString("name"));
@@ -87,7 +88,7 @@ public class Users {
         return new ArrayList<Users>();
     }
 
-    public void saveUser (Users user){
+    public void saveUser(Users user) {
         try {
             String sql = " INSERT INTO datausers VALUES (null, ?, ?, ?, ?)";
             PreparedStatement preparedStatement = UsersConnector.getConnection().prepareStatement(sql);

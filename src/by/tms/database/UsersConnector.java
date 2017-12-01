@@ -10,8 +10,6 @@ public class UsersConnector {
     private static final String PASSWORD = "root";
     private static Connection connection;
 
-
-
     public static Connection getConnection() {
         if (connection == null) {
             try {

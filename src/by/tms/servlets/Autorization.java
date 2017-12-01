@@ -20,14 +20,14 @@ public class Autorization extends HttpServlet {
             String login = req.getParameter("login");
             String password = req.getParameter("password");
             ArrayList<Users> users = new ArrayList<Users>();
-            if (login.trim().length() == 0 || login == null || password.trim().length() == 0 || password == null){
+            if (login.trim().length() == 0 || login == null || password.trim().length() == 0 || password == null) {
                 req.getServletContext().getRequestDispatcher("/badAutorization.jsp").forward(req, resp);
             } else {
-                for (Users user : Users.getUsers()){
+                for (Users user : Users.getUsers()) {
                     users.add(user);
                 }
-                for (Users user : users){
-                    if (user.getLogin().equals(login) && user.getPassword().equals(password)){
+                for (Users user : users) {
+                    if (user.getLogin().equals(login) && user.getPassword().equals(password)) {
                         req.getServletContext().setAttribute("name", user.getName());
                         req.getServletContext().setAttribute("age", user.getAge());
                         req.getServletContext().setAttribute("login", user.getLogin());
@@ -36,12 +36,8 @@ public class Autorization extends HttpServlet {
                     }
                 }
             }
-        }catch (IOException e){
+        } catch (IOException e) {
             req.getServletContext().getRequestDispatcher("/badAutorization.jsp").forward(req, resp);
         }
-
-
-
-
     }
 }

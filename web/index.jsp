@@ -7,17 +7,27 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-  <head>
+<head>
     <title>Вход</title>
-  </head>
-  <body>
-  <h1>Для дальнейшей работы необходимо авторизоваться</h1>
-  <form action="/autorization">
-    <div><pre>Введите логин            Введите пароль</pre></div>
+</head>
+<body>
+<h1>Для дальнейшей работы необходимо авторизоваться</h1>
+<form action="/autorization">
+    <hr>
+    <div>
+        <pre>Введите логин            Введите пароль</pre>
+    </div>
     <input type="text" name="login">
     <input type="password" name="password">
     <input type="submit" value="Войти">
-  </form>
-
-  </body>
+    <hr>
+</form>
+<br>
+<hr>
+<div>(Новичкам необходимо зарегестрироваться)</div>
+<form action="registration.jsp" method="get">
+    <input type="submit" value="Регистрация">
+</form>
+<hr>
+</body>
 </html>
