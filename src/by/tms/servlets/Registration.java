@@ -12,8 +12,11 @@ import java.util.ArrayList;
 
 @WebServlet("/registration")
 public class Registration extends HttpServlet {
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int countOfEqualsUsers = 0;
+        Users newUser = new Users();
         String userName = req.getParameter("userName");
         int userAge = Integer.parseInt(req.getParameter("userAge"));
         String userLogin = req.getParameter("userLogin");
@@ -24,14 +27,23 @@ public class Registration extends HttpServlet {
         }
         for (Users user : users){
             if (userLogin.equals(user.getLogin())){
-                req.getServletContext().setAttribute("login", userLogin);
-                req.getServletContext().getRequestDispatcher("/badRegistration.jsp").forward(req, resp);
+               countOfEqualsUsers++;
             }
         }
-        req.getServletContext().setAttribute("login", userLogin);
-        req.getServletContext().setAttribute("password", userPassword);
-        req.getServletContext().setAttribute("name", userName);
-        req.getServletContext().setAttribute("age", userAge);
-        req.getServletContext().getRequestDispatcher("/goodRegistration.jsp").forward(req,resp);
+        if (countOfEqualsUsers != 0){
+            req.getServletContext().setAttribute("login", userLogin);
+            req.getServletContext().getRequestDispatcher("/badRegistration.jsp").forward(req, resp);
+        } else {
+            newUser.setName(userName);
+            newUser.setAge(userAge);
+            newUser.setLogin(userLogin);
+            newUser.setPassword(userPassword);
+            newUser.saveUser(newUser);
+            req.getServletContext().setAttribute("login", userLogin);
+            req.getServletContext().setAttribute("password", userPassword);
+            req.getServletContext().setAttribute("name", userName);
+            req.getServletContext().setAttribute("age", userAge);
+            req.getServletContext().getRequestDispatcher("/goodRegistration.jsp").forward(req,resp);
+        }
     }
 }
