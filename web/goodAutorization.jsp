@@ -19,5 +19,11 @@
 <div>Возраст пользователя: ${age}</div>
 <div>Логин: ${login}</div>
 <div>Пароль: ${password}</div>
+<br>
+<hr>
+<form action="index.jsp" method="get">
+    <input type="submit" value="Выйти из учетной записи">
+</form>
+<hr>
 </body>
 </html>
