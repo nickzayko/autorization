@@ -22,7 +22,7 @@ public class Autorization extends HttpServlet {
             String login = req.getParameter("login");
             String password = req.getParameter("password");
             ArrayList<Users> users = new ArrayList<Users>();
-            if (login.trim().length() == 0 || login == null || password.trim().length() == 0 || password == null) {
+            if (isNull(login, password)){
                 req.getServletContext().getRequestDispatcher("/badAutorization.jsp").forward(req, resp);
 //                goToBadAutorization();
             } else {
@@ -63,4 +63,15 @@ public class Autorization extends HttpServlet {
 //            e.printStackTrace();
 //        }
 //    }
+    public boolean isNull (String login, String password){
+        boolean check;
+        if (login == null || password == null || login.trim().length() == 0 || password.trim().length() == 0){
+            check = true;
+        } else {
+            check = false;
+        }
+        return check;
+    }
+
+
 }

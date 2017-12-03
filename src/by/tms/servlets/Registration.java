@@ -22,7 +22,8 @@ public class Registration extends HttpServlet {
             String userAge = (req.getParameter("userAge"));
             String userLogin = req.getParameter("userLogin");
             String userPassword = req.getParameter("userPassword");
-            if (userName.trim().length() == 0 || userName == null || userLogin.trim().length() == 0 || userLogin == null || userAge == null || userPassword.trim().length() == 0 || userPassword == null) {
+            if (isNull(userLogin, userPassword, userName, userAge) ){
+//            if (userName.trim().length() == 0 || userName == null || userLogin.trim().length() == 0 || userLogin == null || userAge == null || userPassword.trim().length() == 0 || userPassword == null) {
                 req.getServletContext().getRequestDispatcher("/badRegistration2.jsp").forward(req, resp);
             } else {
                 ArrayList<Users> users = new ArrayList<>();
@@ -54,5 +55,14 @@ public class Registration extends HttpServlet {
         } catch (IOException e) {
             req.getServletContext().getRequestDispatcher("/badRegistration2.jsp").forward(req, resp);
         }
+    }
+    public boolean isNull (String userLogin, String userPassword, String userName, String userAge){
+        boolean check;
+        if (userName.trim().length() == 0 || userName == null || userLogin.trim().length() == 0 || userLogin == null || userAge == null || userPassword.trim().length() == 0 || userPassword == null){
+            check = true;
+        } else {
+            check = false;
+        }
+        return check;
     }
 }
