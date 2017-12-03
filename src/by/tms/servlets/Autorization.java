@@ -24,6 +24,7 @@ public class Autorization extends HttpServlet {
             ArrayList<Users> users = new ArrayList<Users>();
             if (login.trim().length() == 0 || login == null || password.trim().length() == 0 || password == null) {
                 req.getServletContext().getRequestDispatcher("/badAutorization.jsp").forward(req, resp);
+//                goToBadAutorization();
             } else {
                 for (Users user : Users.getUsers()) {
                     users.add(user);
@@ -43,9 +44,23 @@ public class Autorization extends HttpServlet {
                 req.getServletContext().getRequestDispatcher("/goodAutorization.jsp").forward(req, resp);
             } else {
                 req.getServletContext().getRequestDispatcher("/badAutorization.jsp").forward(req, resp);
+//                goToBadAutorization();
             }
         } catch (IOException e) {
             req.getServletContext().getRequestDispatcher("/badAutorization.jsp").forward(req, resp);
         }
     }
+
+
+//    public void goToBadAutorization () {
+//        ServletRequest req = null;
+//        ServletResponse resp = null;
+//        try {
+//             req.getServletContext().getRequestDispatcher("/badAutorization.jsp").forward(req, resp);
+//        } catch (ServletException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 }
