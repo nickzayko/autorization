@@ -88,14 +88,14 @@ public class Users {
         return new ArrayList<Users>();
     }
 
-    public void saveUser(Users user) {
+    public void saveUser() {
         try {
             String sql = " INSERT INTO datausers VALUES (null, ?, ?, ?, ?)";
             PreparedStatement preparedStatement = UsersConnector.getConnection().prepareStatement(sql);
-            preparedStatement.setString(1, user.getName());
-            preparedStatement.setString(2, user.getLogin());
-            preparedStatement.setString(3, user.getPassword());
-            preparedStatement.setInt(4, user.getAge());
+            preparedStatement.setString(1, this.getName());
+            preparedStatement.setString(2, this.getLogin());
+            preparedStatement.setString(3, this.getPassword());
+            preparedStatement.setInt(4, this.getAge());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

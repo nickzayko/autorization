@@ -44,7 +44,7 @@ public class Registration extends HttpServlet {
                     newUser.setAge(Integer.parseInt(userAge));
                     newUser.setLogin(userLogin);
                     newUser.setPassword(userPassword);
-                    newUser.saveUser(newUser);
+                    newUser.saveUser();
                     req.getServletContext().setAttribute("login", userLogin);
                     req.getServletContext().setAttribute("password", userPassword);
                     req.getServletContext().setAttribute("name", userName);
@@ -65,4 +65,13 @@ public class Registration extends HttpServlet {
         }
         return check;
     }
+
+    //делай так
+//    if(isNull(user)){}
+//
+//    public boolean isNull(User u){
+//        return isNull(u.userLogin) || isNull(u.userName) || ...;
+//    }
+
+
 }

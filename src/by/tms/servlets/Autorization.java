@@ -22,29 +22,40 @@ public class Autorization extends HttpServlet {
             String login = req.getParameter("login");
             String password = req.getParameter("password");
             ArrayList<Users> users = new ArrayList<Users>();
-            if (isNull(login, password)){
+//            if (isNull(login, password)){
+
+            //Лучше так
+            if (isNull(login) || isNull(password)){
+
+
+
                 req.getServletContext().getRequestDispatcher("/badAutorization.jsp").forward(req, resp);
-//                goToBadAutorization();
             } else {
+
+
                 for (Users user : Users.getUsers()) {
-                    users.add(user);
-                }
-                for (Users user : users) {
                     if (user.getLogin().equals(login) && user.getPassword().equals(password)) {
                        ifUserExist++;
                        tmpUser = user;
+                       break;
                     }
                 }
             }
+
+
             if (ifUserExist != 0){
-                req.getServletContext().setAttribute("name", tmpUser.getName());
+
+
+//                req.getServletContext().setAttribute("name", tmpUser.getName());
                 req.getServletContext().setAttribute("age", tmpUser.getAge());
                 req.getServletContext().setAttribute("login", tmpUser.getLogin());
                 req.getServletContext().setAttribute("password", tmpUser.getPassword());
+
+                req.getServletContext().setAttribute("user", tmpUser);
+
                 req.getServletContext().getRequestDispatcher("/goodAutorization.jsp").forward(req, resp);
             } else {
                 req.getServletContext().getRequestDispatcher("/badAutorization.jsp").forward(req, resp);
-//                goToBadAutorization();
             }
         } catch (IOException e) {
             req.getServletContext().getRequestDispatcher("/badAutorization.jsp").forward(req, resp);
@@ -52,20 +63,22 @@ public class Autorization extends HttpServlet {
     }
 
 
-//    public void goToBadAutorization () {
-//        ServletRequest req = null;
-//        ServletResponse resp = null;
-//        try {
-//             req.getServletContext().getRequestDispatcher("/badAutorization.jsp").forward(req, resp);
-//        } catch (ServletException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
+
+//    public boolean isNull (String login, String password){
+//        boolean check;
+//        if (login == null || password == null || login.trim().length() == 0 || password.trim().length() == 0){
+//            check = true;
+//        } else {
+//            check = false;
 //        }
+//        return check;
 //    }
-    public boolean isNull (String login, String password){
+
+
+       // И лучше так
+    public boolean isNull (String str){
         boolean check;
-        if (login == null || password == null || login.trim().length() == 0 || password.trim().length() == 0){
+        if (str == null || str.trim().length() == 0){
             check = true;
         } else {
             check = false;
@@ -73,5 +86,11 @@ public class Autorization extends HttpServlet {
         return check;
     }
 
-
+     // равнозначные
+//    public boolean isNull (String str)
+//        return if (str == null || str.trim().length() == 0);
 }
+
+
+
+
